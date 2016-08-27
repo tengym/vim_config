@@ -207,7 +207,7 @@ function! Do_make(arch)
     :redraw!
     exe	":botright cwindow"
   endif
-  exe	":!cp ./hiapp.elf /work/tftp/ -rf"
+  exe	":!cp ./hiapp.elf ~/tftp/ -rf"
 endfunction
 
 """" GtkTags
@@ -1115,7 +1115,7 @@ nnoremap    w=  :resize +5<CR>	"垂直
 nnoremap    w-  :resize -5<CR>
 nnoremap    w,  :vertical resize +5<CR>
 nnoremap    w.  :vertical resize -5<CR>	"水平
-nnoremap   <silent> zj  :resize +20<CR>
+nnoremap    zj  :resize +5<CR>
 
 
 """"""""""""""""""""""""""""""
@@ -1175,8 +1175,7 @@ let g:ctrlp_mruf_max=500
 let g:ctrlp_follow_symlinks=1
 
 "" 显示变量和函数定义
-nnoremap  <silent>fh  :SrcExplToggle<CR><CR>
-"nnoremap <Leader>q :SrcExplToggle<CR> 
+nnoremap <Leader>q :SrcExplToggle<CR> 
 let g:SrcExpl_winHeight = 8 
 let g:SrcExpl_refreshTime = 500 
 "let g:SrcExpl_jumpKey = "<ENTER>" 
@@ -1187,7 +1186,7 @@ let g:SrcExpl_pluginList = [
 let g:SrcExpl_searchLocalDef = 1 
 let g:SrcExpl_isUpdateTags = 0 
 let g:SrcExpl_updateTagsCmd = "ctags -R --sort=yes --c++-kinds=+p --fields=+iaS --extra=+q"
-let g:SrcExpl_updateTagsKey = "<F11>" 
+let g:SrcExpl_updateTagsKey = "<F12>" 
 " let g:SrcExpl_prevDefKey = "<F3>" 
 
 "鼠标移动单词时高亮
@@ -1250,6 +1249,8 @@ nnoremap ,f :cs find f <C-R>=expand("<cword>")<CR><CR>
 nnoremap ,i :cs find i <C-R>=expand("<cword>")<CR><CR>
 nnoremap ,d :cs find d <C-R>=expand("<cword>")<CR><CR>
 
+noremap <silent>fi :cs find t <C-R>=expand("<cword>")<CR><CR>
+
 "快捷键查找
 nnoremap <silent><Leader>f /<C-R>=expand("<cword>")<CR><CR>
 
@@ -1293,6 +1294,7 @@ vnoremap aa dO*/<Esc>PO/*<Esc>
 
 "插入条件编译注释 #if 0 ... #endif
 vnoremap ff dO#endif<Esc>PO#if 0<Esc>
+vnoremap fl dO  }<Esc>PO{<Esc>
 
 ""F11自动在当前位置插入日期
 map i=strftime("%Y-%m-%d %H:%M:%S")
@@ -1304,7 +1306,7 @@ set nobackup
 set nowritebackup 
 set noswapfile
 
-set autoread " 当文件在外部被修改，自动更新该文件
+"set autoread " 当文件在外部被修改，自动更新该文件
 "set autowrite "编辑下一个文件时，自动保存上一个文件
 
 "快速切换到shell

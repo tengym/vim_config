@@ -47,13 +47,12 @@ vman() {
 ### for alias
 
 #add tenym
-alias to='cd /work'
 alias q='exit'
 alias op='vim -p .'
 alias chd='chmod 777'
 alias tpr='sudo service tftpd-hpa restart'
 alias tp='rm -rf /home/tengym/tftp/hiapp.elf;cp ./hiapp.elf /home/tengym/tftp -rf;chmod 777 /home/tengym/tftp/hiapp.elf'
-alias ign='find . -type d -empty -exec touch {}/.gitignore \;'
+alias get='git clone git@192.168.1.109:/home/git/repositories/'
 
 alias a='apvlv'
 alias c='cd'
