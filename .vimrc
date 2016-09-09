@@ -1104,8 +1104,14 @@ func SetFunc()
     call append(line(".")+5, "**   Return: ") 
     call append(line(".")+6, "*************************************************************/") 
 endfunc
-
 nnoremap <F5> <ESC>:call SetFunc()<CR>
+
+func SetPrint()
+    call append(line(".")+0,"printf(\"Func:\%s;Line:\%d--\\n\", __FUNCTION__, __LINE__);") 
+    exec "normal $"
+    exec "normal v2"
+endfunc
+nnoremap <F10> <ESC>:call SetPrint()<CR>
 
 "" 多窗口
 nnoremap <silent>fj :sp .<CR>
@@ -1156,7 +1162,6 @@ nmap <silent><F3> :WMToggle<cr>
 nnoremap <silent>tn :tabnew .<CR>
 nnoremap <silent>tc :tabc<CR>
 nnoremap <silent><tab> :tabn<CR>
-
 
 "" ctrlp 查找文件
 Bundle 'ctrlpvim/ctrlp.vim'
@@ -1289,6 +1294,7 @@ nnoremap <C-A> ggVG
 "自动排版
 map ee gg=G
 
+""===<快速注释>===
 ""插入块注释   /*  */
 vnoremap aa dO*/<Esc>PO/*<Esc>
 
@@ -1316,6 +1322,7 @@ nnoremap <silent>q <ESC>:sh<CR><CR>
 nnoremap <silent>to <ESC>:buffer
 
 " 跨文件复制粘贴
+nnoremap <silent>,c yaw
 vnoremap <silent>,c "+y
 nnoremap <silent>,v "+p
 set pastetoggle=<F1> "设置为‘粘贴’模式
@@ -1343,6 +1350,12 @@ nnoremap <silent>fy <ESC>vey
 "删除当前单词并替换另一单词
 nnoremap <silent>fp <ESC>vep
 "替换光标下单词 :% s/A/B/g
-nnoremap <C-h> :% s/<c-r><c-w>//g
+nnoremap <C-h> :% s/<c-r><c-w>/<c-r><c-w>/g
 
+"替换整个单词，并重新复制
+function! ReplaceWord() 
+    exec "normal vep"
+    exec "normal yaw"
+endfunction 
+nnoremap fp :call ReplaceWord()<CR>
 
